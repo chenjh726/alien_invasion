@@ -1,9 +1,11 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Ship:
+class Ship(Sprite):
     # 飞船类
 
     def __init__(self, ai_game):
+        super().__init__()
         # 初始化屏幕
         self.screen = ai_game.screen
         self.settings = ai_game.settings
