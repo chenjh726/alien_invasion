@@ -2,6 +2,7 @@ import pygame.font
 
 class Button:
     # 按钮类
+
     def __init__(self,ai_game,msg):
         self.screen = ai_game.screen
         self.screen_rect = self.screen.get_rect()
@@ -14,10 +15,12 @@ class Button:
         self._prep_msg(msg)
 
     def _prep_msg(self, msg):
+        # 预处理按钮信息
         self.msg_image = self.font.render(msg, True, self.text_color, self.button_color)
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
 
     def draw_button(self):
+        # 显示按钮
         self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)

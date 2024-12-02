@@ -3,7 +3,6 @@ class Settings:
 
     def __init__(self):
         # 初始化游戏的静态设置
-
         # 屏幕设置
         self.screen_width = 900
         self.screen_height = 600
@@ -33,7 +32,6 @@ class Settings:
 
     def initialize_dynamic_settings(self):
         # 初始化游戏的动态设置
-
         self.ship_speed = 1.5
         self.bullet_speed = 3
         self.alien_speed = 0.5
@@ -41,7 +39,6 @@ class Settings:
 
     def increase_speed(self):
         # 提高速度设置
-
         self.ship_speed *= self.speedup_scale
         self.bullet_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale

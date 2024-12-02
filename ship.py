@@ -35,5 +35,6 @@ class Ship(Sprite):
         self.screen.blit(self.image, self.rect)
 
     def center_ship(self):
+        # 重置飞船位置
         self.rect.midbottom = self.screen_rect.midbottom
         self.x = float(self.rect.x)

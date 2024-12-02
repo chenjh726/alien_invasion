@@ -20,13 +20,18 @@ class Scoreboard:
         self.prep_level()
         self.prep_ships()
 
+    def prep_image(self, str):
+        # 预处理图像信息
+        self.image = self.font.render(str, True, 
+            self.text_color, self.settings.bg_color)
+        self.rect = self.image.get_rect()
+        return (self.image, self.rect)
+
     def prep_score(self):
         # 显示分数
         rounded_score = round(self.stats.score, -1)
         score_str = f"{rounded_score:,}"
-        self.score_image = self.font.render(score_str, True, 
-            self.text_color, self.settings.bg_color)
-        self.score_rect = self.score_image.get_rect()
+        self.score_image, self.score_rect = self.prep_image(score_str)
         self.score_rect.right = self.screen_rect.right - 20
         self.score_rect.top = 20
 
@@ -34,18 +39,14 @@ class Scoreboard:
         # 显示最高分数
         high_score = round(self.stats.high_score, -1)
         high_score_str = f"{high_score:,}"
-        self.high_score_image = self.font.render(high_score_str,
-            True, self.text_color, self.settings.bg_color)
-        self.high_score_rect = self.high_score_image.get_rect()
+        self.high_score_image, self.high_score_rect = self.prep_image(high_score_str)
         self.high_score_rect.center = self.screen_rect.center
         self.high_score_rect.top = self.score_rect.top
 
     def prep_level(self):
         # 显示等级
         level_str = str(self.stats.level)
-        self.level_image = self.font.render(level_str, True,
-            self.text_color, self.settings.bg_color)
-        self.level_rect = self.level_image.get_rect()
+        self.level_image, self.level_rect = self.prep_image(level_str)
         self.level_rect.right = self.score_rect.right
         self.level_rect.top = self.score_rect.bottom+10
 
@@ -58,8 +59,8 @@ class Scoreboard:
             ship.rect.y = 10
             self.ships.add(ship)
 
-
     def check_high_score(self):
+        # 检测是否出现新的最高分数
         if self.stats.score > self.stats.high_score:
             self.stats.high_score = self.stats.score
             self.prep_high_score()
